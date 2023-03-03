@@ -1,0 +1,128 @@
+body{
+	background:  #17184F;
+	
+}
+.login-block {
+	background:  #1D1E77;
+	
+	
+	background: linear-gradient(to bottom, #5456ad,  #17184F );
+	float: left;
+	width: 100%;
+	padding: 50px 0;
+}
+
+   
+.container {
+	background: #fff;
+	border-radius: 10px;
+	box-shadow: 15px 20px 0px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-inner {
+	border-radius: 0 10px 10px 0;
+}
+
+.carousel-caption {
+	text-align: left;
+	left: 5%;
+}
+
+.login-sec {
+	padding: 50px 30px;
+	position: relative;
+}
+
+.login-sec .copy-text {
+	position: absolute;
+	width: 80%;
+	bottom: 20px;
+	font-size: 13px;
+	text-align: center;
+}
+
+.login-sec .copy-text i {
+	color: #FEB58A;
+}
+
+.login-sec .copy-text a {
+	color: #1D1E77;
+}
+
+.login-sec h2 {
+	margin-bottom: 40px;
+	font-weight: 800;
+	font-size: 30px;
+	color: #1D1E77;
+}
+
+
+
+.btn-login {
+	background: #1D1E77;
+	color: #fff;
+	font-weight: 600;
+}
+
+.banner-text {
+	width: 70%;
+	position: absolute;
+	bottom: 40px;
+	padding-left: 20px;
+}
+
+.banner-text h2 {
+	color: #fff;
+	font-weight: 600;
+}
+
+.banner-text h2:after {
+	content: " ";
+	width: 100px;
+	height: 5px;
+	background: #FFF;
+	display: block;
+	margin-top: 20px;
+	border-radius: 3px;
+}
+
+.banner-text p {
+	color: #fff;
+}
+.signup-button{
+	margin-top: 4% !important;
+}
+.signup-button button{
+	background: #1D1E77;
+	border: 0;
+	outline: 0;
+	color: #fff;
+	font-weight: 600;
+	width: 100%;
+}
+.signup-button button:hover{
+	background: #2e30a0;
+}
+.login-block .signup-button {
+    margin-top: 60px !important;
+}
+.login-block .signup-button p{
+
+	display: flex;
+	flex-direction: row;
+    overflow: hidden;
+    text-align: center;
+}
+.login-block .signup-button p:before, .login-block .signup-button p:after{
+	content: "";
+	flex: 1 1;
+	border-bottom: 1px solid;
+	margin: auto;
+
+}
+.login-block .signup-button p:before{
+  margin-right: 10px;
+}
+.login-block .signup-button p:after{
+	margin-left: 10px
+}

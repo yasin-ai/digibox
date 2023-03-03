@@ -1,0 +1,162 @@
+body{
+    overflow-x: hidden;
+    background-image: url('/images/layered-waves-haikei.png');
+    background-repeat: no-repeat;
+
+    background-size: cover;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.mrow-70{
+    height: 500px;
+    background-color: transparent;
+    color: white;
+}
+
+.mnav { 
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.hidev{
+    margin-left: 30px;
+    display: flex;
+    align-items: center;
+    height: inherit;
+
+}
+
+.hidev ul li{
+    list-style-type: none;
+}
+
+#hi1{
+    font-size: 39px;
+}
+
+#hi2{
+    font-size: 28px;
+}
+
+#hi3{
+    font-size: 55px;
+}
+.mnav a{
+    text-decoration: none;
+    margin-right: 4px;
+    margin-left: 4px;
+}
+.mnav-a-admin{
+    display: block;
+    float: right;
+}
+.card-container{
+    height: auto;
+    /* background-color: rgb(147, 110, 110); */
+    padding: 20px;
+}
+
+.new-user-signup{
+    position: right;
+}
+
+.card{
+    width: 80%;
+    padding: 20px;
+    border-radius: 12px;
+    
+    box-shadow: 1px 3px 15px 0px rgba(0,0,0,0.75);
+}
+
+@media screen and (max-width: 600px) {
+    .card {
+        width: 100%;
+    }
+  }
+.card ul{
+    margin-left: 30px;
+    margin-top: 12px;
+    margin-bottom: 20px;
+}
+
+.card h2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mbtn-submit{
+    width: 100%;
+    border-radius: 40px;
+    background-color: #1D1E77;
+    padding: 5px;
+    color: white;
+    border: none;
+    
+
+}
+
+.mbtn-primary{
+    display: flex;
+    width: 100%;
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+    background-color: #1D1E77;
+    margin-top: 5px;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    cursor: pointer;
+
+}
+
+.mbtn-primary:hover{
+    background-color: #343581;
+
+}
+
+#mbtn-admin{
+    border: 2px solid rgb(181, 181, 181);
+    padding-left: 18px;
+    padding-right: 18px;
+    transition: none;
+    transform: none;
+}
+
+
+
+.mb-4{
+    color: white;
+}
+
+.fab{
+    color: white;
+    transition: 0.3s;
+}
+
+.fab:hover{
+    transform: translateY(-4px);
+}
+
+.navbar{
+    
+    background-color: #1D1E77 !important;
+}
+
+.navbar-brand{
+    color: white !important;
+}
+
+.nav-link{
+    color: white !important;
+}
