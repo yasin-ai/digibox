@@ -44,7 +44,7 @@
                         </div>
                         <div class="d-grid gap-2 col-12 mt-3 signup-button">
                             <p>  Don't have account</p>
-                            <button class="btn btn-primary" type="button">Signup</button>
+                            <button class="btn btn-primary" type="button" onclick="location.href = '/signup';">Signup</button>
                           </div>
                     </form>
 
@@ -97,21 +97,29 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         const form = document.querySelector('form');
-  form.addEventListener("submit", async event => {
-    event.preventDefault();
-    const username = document.querySelector('#username-input').value;
-    const password = document.querySelector('#password-input').value;
-    try {
-      const response = await axios.post('https://digirecruitserver.azurewebsites.net/auth/login', {
-        username: username,
-        password: password
-      });
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  });
-    </script>
+        form.addEventListener("submit", async event => {
+          event.preventDefault();
+          const username = document.querySelector('#username-input').value;
+          const password = document.querySelector('#password-input').value;
+          try {
+            const response = await axios.post('https://digirecruitserver.azurewebsites.net/auth/login', {
+              username: username,
+              password: password
+            });
+            console.log(response.data);
+            var responseData = response.data;
+            if(responseData.profile == "Candidate"){
+              const candidateDataResponse = await axios.get(`/candidate/details?username=${username}`);
+              const candidateData = candidateDataResponse.data;
+              console.log(candidateData);
+              // render candidate.ejs with candidateData object
+            }
+          } catch (error) {
+            console.error(error);
+          }
+        });
+      </script>
+      
 </body>
 
 </html>
