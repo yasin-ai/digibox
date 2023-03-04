@@ -28,6 +28,7 @@
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-control" placeholder="Password" id="password-input">
+                            
                         </div>
 
                         <div class="form-group">
@@ -47,6 +48,10 @@
                             <button class="btn btn-primary" type="button" onclick="location.href = '/login';" >Login</button>
                           </div>
                     </form>
+                    <br>
+                    <div class="alert alert-success" role="alert" id="success-message" style="display: none;">
+                        Your account has been created successfully! Go Login!
+                    </div>
 
                     <div class="copy-text">Created with <i class="fa fa-heart"></i> by <a
                             href="">Team Unicode</a></div>
@@ -107,26 +112,53 @@
 
     <script>
         const form = document.querySelector('form');
-  form.addEventListener("submit", async event => {
-    event.preventDefault();
-    const username = document.querySelector('#username-input').value;
-    const password = document.querySelector('#password-input').value;
-    var profileValue = document.getElementById('profile');
-    var profile = profileValue.options[profileValue.selectedIndex].text;
-
-console.log(profile)
-    try {
-      const response = await axios.post('https://digirecruitserver.azurewebsites.net/auth/signup', {
-        username: username,
-        password: password,
-        profile: profile
-      });
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  });
-    </script>
+        const successMessage = document.querySelector('#success-message');
+        form.addEventListener("submit", async event => {
+          event.preventDefault();
+          const username = document.querySelector('#username-input').value;
+          const password = document.querySelector('#password-input').value;
+          var profileValue = document.getElementById('profile');
+          var profile = profileValue.options[profileValue.selectedIndex].text;
+      
+          console.log(profile)
+          try {
+            const response = await axios.post('https://digirecruitserver.azurewebsites.net/auth/signup', {
+              username: username,
+              password: password,
+              profile: profile
+            });
+            console.log(response.data);
+            successMessage.style.display = "block"; // Show success message
+          } catch (error) {
+            console.error(error);
+          }
+        });
+      
+        const passwordInput = document.getElementById('password-input');
+      
+        function validatePassword() {
+          const password = passwordInput.value;
+      
+          const regex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=.{8,})/;
+      
+          if (regex.test(password)) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      
+        passwordInput.addEventListener('input', () => {
+          const isValid = validatePassword();
+          if (isValid) {
+            passwordInput.setCustomValidity('');
+          } else {
+            passwordInput.setCustomValidity('Password must contain at least 8 characters including 1 uppercase letter, 1 number, and 1 special character.');
+          }
+        });
+      
+      </script>
+    
 </body>
 
 </html>

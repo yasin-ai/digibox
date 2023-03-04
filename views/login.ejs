@@ -23,31 +23,33 @@
                     <h2 class="text-center">Login Now</h2>
                     <form class="login-form">
                         <div class="form-group">
-                            <label for="exampleInputEmail1" class="">Username</label>
-                            <input type="text" class="form-control" placeholder="" id="username-input">
-
+                          <label for="exampleInputEmail1" class="">Username</label>
+                          <input type="text" class="form-control" placeholder="" id="username-input">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1" class="">Password</label>
+                          <label for="exampleInputPassword1" class="">Password</label>
+                          <div class="input-group">
                             <input type="password" class="form-control" placeholder="" id="password-input">
-                        </div>
-
-
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                                <small>Remember Me</small>
-                            </label>
-                            <button type="submit" class="btn btn-login col-md-4 float-right">Login</button>
-                            
-
-                        </div>
-                        <div class="d-grid gap-2 col-12 mt-3 signup-button">
-                            <p>  Don't have account</p>
-                            <button class="btn btn-primary" type="button" onclick="location.href = '/signup';">Signup</button>
+                            <span class="input-group-text">
+                              <input type="checkbox" class="form-check-input" id="show-password-checkbox">
+                              <label class="form-check-label" for="show-password-checkbox">Show Password</label>
+                            </span>
                           </div>
-                    </form>
-
+                        </div>
+                        <div class="form-check">
+                          <button type="submit" class="btn btn-login col-md-6 float-left">Login</button>
+                        </div>
+                      
+                        <div class="d-grid gap-2 col-12 mt-3 signup-button">
+                          <p>Don't have account</p>
+                          <button class="btn btn-primary" type="button" onclick="location.href = '/signup';">Signup</button>
+                        </div>
+                        <br>
+                        <div class="alert alert-danger" role="alert" id="error-message" style="display: none;">
+                            Invalid username or password
+                          </div>
+                      </form>
+                      
                     <div class="copy-text">Created by <a
                             href="">Team Unicode</a></div>
                 </div>
@@ -97,6 +99,9 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         const form = document.querySelector('form');
+        const passwordInput = document.getElementById('password-input');
+        const showPasswordCheckbox = document.getElementById('show-password-checkbox');
+      
         form.addEventListener("submit", async event => {
           event.preventDefault();
           const username = document.querySelector('#username-input').value;
@@ -109,14 +114,19 @@
             console.log(response.data);
             var responseData = response.data;
             if(responseData.profile == "Candidate"){
-              const candidateDataResponse = await axios.get(`/candidate/details?username=${username}`);
-              const candidateData = candidateDataResponse.data;
-              console.log(candidateData);
-              // render candidate.ejs with candidateData object
+              window.location.href = `/candidate/details?username=${username}`;
+            } else if(responseData.profile == "Recruiter"){
+              window.location.href = `/recruiter`;
             }
           } catch (error) {
-            console.error(error);
+            const errorMessage = document.getElementById('error-message');
+            errorMessage.style.display = 'block';
+            console.log(error)
           }
+        });
+      
+        showPasswordCheckbox.addEventListener('change', () => {
+          passwordInput.type = showPasswordCheckbox.checked ? 'text' : 'password';
         });
       </script>
       

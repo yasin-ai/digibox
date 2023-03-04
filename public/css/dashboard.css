@@ -1,0 +1,7 @@
+body{
+    overflow-x: hidden;
+    background-image: url('/images/layered-waves-haikei.png');
+    background-repeat: no-repeat;
+    background-color: black;
+    background-size: cover;
+}

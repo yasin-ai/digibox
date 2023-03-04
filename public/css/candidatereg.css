@@ -1,0 +1,41 @@
+body{
+    overflow-x: hidden;
+    background-image: url('/images/layered-waves-haikei.png');
+    background-repeat: no-repeat;
+
+    background-size: cover;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card{
+    margin-top: 40px;
+    width: 60%;
+    padding: 30px 12px;
+}
+
+.mbtn-submit{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.mbtn-submit input{
+    display: flex;
+    width: 40%;
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+    background-color: #6600FF;
+    margin-top: 5px;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    cursor: pointer;
+
+}

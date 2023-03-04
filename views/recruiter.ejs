@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Recruiter Data</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="my-4 text-center">List of candidates</h1>
+      <div class="row">
+        <% recruiterData.data.forEach(candidate => { %>
+          <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title"><%= candidate.name %></h5>
+                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#candidateModal<%= candidate.username %>" data-username="<%= candidate.username %>">View Details</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Candidate Modal -->
+          <div class="modal fade" id="candidateModal<%= candidate.username %>" tabindex="-1" role="dialog" aria-labelledby="candidateModalLabel<%= candidate.username %>" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="candidateModalLabel<%= candidate.username %>"><%= candidate.name %></h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-lg-4 col-md-12">
+                      <img class="img-fluid rounded" id="profilePic<%= candidate.username %>" src="" alt="<%= candidate.name %>">
+                    </div>
+                    <div class="col-lg-8 col-md-12">
+                      <p><strong>Username:</strong> <%= candidate.username %></p>
+                      <p><strong>Age:</strong> <span id="age<%= candidate.username %>"></span></p>
+                      <p><strong>Resume URL:</strong> <a id="resumeUrl<%= candidate.username %>" href="" target="_blank">Resume Link</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+      $(document).ready(() => {
+        $('.modal').on('shown.bs.modal', (e) => {
+          const username = $(e.relatedTarget).data('username');
+          const url = `https://digirecruitserver.azurewebsites.net/candidate/details?username=${username}`;
+          axios.get(url)
+            .then((response) => {
+              const candidateData = response.data.data;
+              console.log(candidateData);
+
+              // Set the age
+              $('#age' + candidateData.username).text(candidateData.age);
+
+              // Set the profile picture
+              $('#profilePic' + candidateData.username).attr('src', candidateData.photoUrl);
+
+              // Set the resume URL
+            
+              $('#resumeUrl' + candidateData.username).attr('href', candidateData.resumeUrl);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        });
+      });
+    </script>
+  </body>
+</html>
